@@ -4,12 +4,12 @@ import React from "react"
 
 export default function Cards(){
     return(
-        <Card/>
+        cards.map((p)=> <Card answer={p.answer} question={p.question} n={cards.indexOf(p)+1} />)
     )
 }
 
 function Card(props){
-    const {answer,question} = props
+    const {answer,question,n} = props
     const [virada,setVirada] = React.useState(false)
     const [start,setStart] = React.useState(false)
     const [resposta,setResposta] = React.useState("")
@@ -38,12 +38,12 @@ function Card(props){
     return(
         <>
         <StartCard start={start} resposta ={resposta} virada={virada}>
-            <p>Pergunta 1</p>
+            <p>Pergunta {n}</p>
             <img src="assets/playButton.svg" onClick={startQuestion}/>
         </StartCard>
         <CardQuestion start={start} virada={virada}>
         <Answer>
-            <p>JSX é uma sintaxe para escrever HTML dentro do JS</p>
+            <p>{answer}</p>
             <Buts>
                 <But onClick={naoLembrou} color="#FF3030">Não lembrei</But>
                 <But onClick={quaseLembrou} color="#FF922E">Quase não lembrei</But>
@@ -51,7 +51,7 @@ function Card(props){
             </Buts>
         </Answer>
         <Question clicada={virada}>
-            <p>O que é JSX?</p>
+            <p>{question}</p>
             <img 
             src="assets/rotate.svg"
             onClick={virarCarta}/>
@@ -70,13 +70,14 @@ const StartCard = styled.div`
     display: ${props => props.start ? "none" : "flex" };
     justify-content: space-between;
     align-items: center;
+    margin: 12.5px;
     p{
         font-family: 'Recursive', sans-serif;
         font-weight: 700;
         margin: 0px 10px;
         color: ${props => props.resposta == "naoLembrou" && " #FF3030"};
         color: ${props => props.resposta == "quaseLembrou" && "#FF922E"};
-        color: ${props => props.resposta == "Lembrou" && "#2FBE34"};
+        color: ${props => props.resposta == "lembrou" && "#2FBE34"};
         text-decoration-line: ${props => props.resposta != "" && "line-through"};
         
     }
@@ -93,6 +94,7 @@ const CardQuestion = styled.div`
     backface-visibility: hidden;
     transition: all .5s linear;
     transform: ${props => props.virada && "rotateY(180deg)"};
+    margin: 12.5px;
 `
 
 
