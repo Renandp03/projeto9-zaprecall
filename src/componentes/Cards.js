@@ -13,24 +13,30 @@ function Card(props){
     const [virada,setVirada] = React.useState(false)
     const [start,setStart] = React.useState(false)
     const [resposta,setResposta] = React.useState("")
+    const [icone, setIcone] = React.useState("assets/playButton.svg")
 
     function virarCarta(){
         setVirada(true)
     }
     function startQuestion(){
-        setStart(true)
+        if(resposta==""){
+            setStart(true)
+        }
     }
 
     function naoLembrou(){
         setResposta("naoLembrou")
+        setIcone("assets/naoLembrou.svg")
         setStart(false)
     }
     function quaseLembrou(){
         setResposta("quaseLembrou")
+        setIcone("assets/quaseLembrou.svg")
         setStart(false)
     }
     function lembrou(){
         setResposta("lembrou")
+        setIcone("assets/lembrou.svg")
         setStart(false)
     }
    
@@ -39,23 +45,23 @@ function Card(props){
         <>
         <StartCard start={start} resposta ={resposta} virada={virada}>
             <p>Pergunta {n}</p>
-            <img src="assets/playButton.svg" onClick={startQuestion}/>
+            <img src={icone} onClick={startQuestion}/>
         </StartCard>
         <CardQuestion start={start} virada={virada}>
-        <Answer>
-            <p>{answer}</p>
-            <Buts>
-                <But onClick={naoLembrou} color="#FF3030">Não lembrei</But>
-                <But onClick={quaseLembrou} color="#FF922E">Quase não lembrei</But>
-                <But onClick={lembrou} color="#2FBE34">Zap</But>
-            </Buts>
-        </Answer>
-        <Question clicada={virada}>
-            <p>{question}</p>
-            <img 
-            src="assets/rotate.svg"
-            onClick={virarCarta}/>
-        </Question>
+            <Answer>
+                <p>{answer}</p>
+                <Buts>
+                    <But onClick={naoLembrou} color="#FF3030">Não lembrei</But>
+                    <But onClick={quaseLembrou} color="#FF922E">Quase não lembrei</But>
+                    <But onClick={lembrou} color="#2FBE34">Zap</But>
+                </Buts>
+            </Answer>
+            <Question clicada={virada}>
+                <p>{question}</p>
+                <img 
+                src="assets/rotate.svg"
+                onClick={virarCarta}/>
+            </Question>
         </CardQuestion>
         </>
     )
@@ -95,6 +101,7 @@ const CardQuestion = styled.div`
     transition: all .5s linear;
     transform: ${props => props.virada && "rotateY(180deg)"};
     margin: 12.5px;
+  
 `
 
 
