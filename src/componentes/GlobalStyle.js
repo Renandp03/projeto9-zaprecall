@@ -52,7 +52,7 @@ table {
         flex-direction: column;
         align-items: center;
 		justify-content: center;
-		margin-bottom: 80px;
+		margin-bottom: 200px;
     }
 `
 

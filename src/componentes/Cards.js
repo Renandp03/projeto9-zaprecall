@@ -42,7 +42,7 @@ function Card(props){
    
 
     return(
-        <>
+        <AllCard start={start}>
         <StartCard start={start} resposta ={resposta} virada={virada}>
             <p>Pergunta {n}</p>
             <img src={icone} onClick={startQuestion}/>
@@ -63,9 +63,16 @@ function Card(props){
                 onClick={virarCarta}/>
             </Question>
         </CardQuestion>
-        </>
+        </AllCard>
     )
 }
+
+const AllCard = styled.div`
+    height: ${props => props.start == true && "131px"};
+
+`
+
+
 
 const StartCard = styled.div`
     width: 300px;
@@ -76,7 +83,7 @@ const StartCard = styled.div`
     display: ${props => props.start ? "none" : "flex" };
     justify-content: space-between;
     align-items: center;
-    margin: 12.5px;
+    margin: 25px;
     p{
         font-family: 'Recursive', sans-serif;
         font-weight: 700;
@@ -100,14 +107,15 @@ const CardQuestion = styled.div`
     backface-visibility: hidden;
     transition: all .5s linear;
     transform: ${props => props.virada && "rotateY(180deg)"};
-    margin: 12.5px;
+    margin: 25px;
+    position: relative;
   
 `
 
 
 const Question = styled.div`
     width: 300px;
-    height: 131px;
+    min-height: 131px;
     background-color: white;
     display: flex;
     justify-content: space-between;
@@ -131,13 +139,14 @@ const Question = styled.div`
 
 const Answer = styled.div`
     width: 300px;
-    height: 131px;
+    min-height: 131px;
     background-color: white;
     border-radius:5px;
     display: flex;
     flex-direction: column;
     transform: rotateY(180deg);
     position: absolute;
+    backface-visibility: hidden;
     box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
     p{
         font-family: 'Recursive', sans-serif;
