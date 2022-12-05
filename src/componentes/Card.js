@@ -1,10 +1,11 @@
 import styled from "styled-components"
 import React from "react"
+import cards from "./cardList"
 
 
 
 export default function Card(props){
-    const {contador,setContador,answer,question,n,gameStart} = props
+    const {contador,setContador,icones,setIcones,answer,question,n,gameStart,setTudoCerto,setTudoErrado} = props
     const [virada,setVirada] = React.useState(false)
     const [start,setStart] = React.useState(false)
     const [resposta,setResposta] = React.useState("")
@@ -23,19 +24,34 @@ export default function Card(props){
         setResposta("naoLembrou")
         setIcone("assets/naoLembrou.svg")
         setContador(contador + 1)
+        setIcones([...icones,"assets/naoLembrou.svg"])
+        verificar([...icones,"assets/naoLembrou.svg"])
         setStart(false)
     }
     function quaseLembrou(){
         setResposta("quaseLembrou")
         setIcone("assets/quaseLembrou.svg")
         setContador(contador + 1)
+        setIcones([...icones,"assets/quaseLembrou.svg"])
+        verificar([...icones,"assets/quaseLembrou.svg"])
         setStart(false)
     }
     function lembrou(){
         setResposta("lembrou")
         setIcone("assets/lembrou.svg")
         setContador(contador + 1)
+        setIcones([...icones,"assets/lembrou.svg"])
+        verificar([...icones,"assets/lembrou.svg"])
         setStart(false)
+    }
+
+    function verificar(array){
+        if(array.length==cards.length && array.includes("assets/naoLembrou.svg")){
+            setTudoErrado(true)
+        }
+        else if(array.length==cards.length && !array.includes("assets/naoLembrou.svg")){
+            setTudoCerto(true)
+        }
     }
    
 

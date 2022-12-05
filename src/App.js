@@ -9,15 +9,42 @@ function App() {
 
   const [gameStart,setGameStart] = React.useState(false)
   const [contador,setContador] = React.useState(0)
-
+  const [icones,setIcones] = React.useState([])
+  const [tudoCerto,setTudoCerto] = React.useState(false)
+  const [tudoErrado,setTudoErrado] = React.useState(false)
 
   return(
     <>
       <GlobalStyle/>
-      <Home gameStart={gameStart} setGameStart={setGameStart}/>
-      <Title gameStart={gameStart}/>
-      <Cards gameStart={gameStart} contador={contador} setContador={setContador}/>
-      <Footer gameStart={gameStart} contador={contador}/>
+
+
+      <Home 
+      gameStart={gameStart}
+      setGameStart={setGameStart}/>
+
+
+      <Title 
+      gameStart={gameStart}/>
+
+
+      <Cards
+       gameStart={gameStart}
+       contador={contador} 
+       setContador={setContador} 
+       icones={icones} 
+       setIcones={setIcones}
+       tudoCerto={tudoCerto}
+       tudoErrado={tudoErrado}
+       setTudoCerto={setTudoCerto}
+       setTudoErrado={setTudoErrado}/>
+      
+
+      <Footer 
+      gameStart={gameStart} 
+      contador={contador} 
+      icones={icones}
+      tudoCerto={tudoCerto}
+      tudoErrado={tudoErrado}/>
     </>
   )
 }
