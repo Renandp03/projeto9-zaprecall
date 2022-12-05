@@ -1,8 +1,11 @@
 import styled from "styled-components"
 
-export default function Title(){
+export default function Title(props){
+
+    const {gameStart} = props
+    
     return(
-        <TitleDiv>
+        <TitleDiv gameStart={gameStart}>
             <img src="assets/raio.png"  alt="raio"/>
             <h1>ZapRecall</h1>
         </TitleDiv>
@@ -11,7 +14,7 @@ export default function Title(){
 }
 
 const TitleDiv = styled.div`
-    display: flex;
+    display: ${props  => props.gameStart ? "flex" : "none"};
     width: 100%;
     margin-top: 50px;
     align-items: center ;

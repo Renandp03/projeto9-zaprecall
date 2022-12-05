@@ -4,7 +4,7 @@ import React from "react"
 
 
 export default function Card(props){
-    const {contador,setContador,answer,question,n} = props
+    const {contador,setContador,answer,question,n,gameStart} = props
     const [virada,setVirada] = React.useState(false)
     const [start,setStart] = React.useState(false)
     const [resposta,setResposta] = React.useState("")
@@ -40,7 +40,7 @@ export default function Card(props){
    
 
     return(
-        <Flashcard data-test="flashcard" start={start}>
+        <Flashcard data-test="flashcard" start={start} gameStart={gameStart}>
         <StartCard start={start} resposta ={resposta} virada={virada}>
             <p data-test="flashcard-text">Pergunta {n}</p>
             <img data-test="play-btn" src={icone} onClick={startQuestion}/>
@@ -67,6 +67,7 @@ export default function Card(props){
 }
 
 const Flashcard = styled.div`
+    display: ${props => props.gameStart ? "" : "none"};
     height: ${props => props.start == true && "131px"};
 
 `

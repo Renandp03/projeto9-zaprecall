@@ -3,16 +3,22 @@ import styled from "styled-components"
 import cards from "./cardList"
 
 export default function Footer(props){
-    const {contador} = props
+    
+    const {contador,gameStart} = props
+
+
+    
     return(
-        <Barra data-test="footer"><p>{contador}/{cards.length} concluídos</p></Barra>
+        <Barra gameStart={gameStart} data-test="footer">
+            <p>{contador}/{cards.length} concluídos</p>
+            </Barra>
     )
 }
 
 const Barra = styled.div`
     width: 100%;
     min-height: 70px;
-    display: flex;
+    display: ${props  => props.gameStart ? "flex" : "none"};
     align-items: center;
     justify-content: center;
     background-color: white;
