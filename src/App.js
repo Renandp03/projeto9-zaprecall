@@ -1,16 +1,20 @@
 import Title from "./componentes/Title";
-import styled from "styled-components"
 import { GlobalStyle } from "./componentes/GlobalStyle";
 import Cards from "./componentes/Cards";
-import Base from "./componentes/Base";
+import Footer from "./componentes/Footer";
+import React from "react";
 
 function App() {
+
+  const [contador,setContador] = React.useState(0)
+
+
   return(
     <>
     <GlobalStyle/>
       <Title/>
-      <Cards/>
-      <Base/>
+      <Cards contador={contador} setContador={setContador}/>
+      <Footer contador={contador}/>
     </>
   )
 }

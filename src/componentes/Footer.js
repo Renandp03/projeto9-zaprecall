@@ -1,15 +1,17 @@
 import React from "react"
 import styled from "styled-components"
+import cards from "./cardList"
 
-export default function Base(){
+export default function Footer(props){
+    const {contador} = props
     return(
-        <Barra><p>0/8 concluídos</p></Barra>
+        <Barra data-test="footer"><p>{contador}/{cards.length} concluídos</p></Barra>
     )
 }
 
 const Barra = styled.div`
     width: 100%;
-    height: 70px;
+    min-height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
